@@ -2,12 +2,13 @@
 {
     using GeekQuiz.Models;
     using System.Data.Entity;
-    using System.Threading.Tasks;
-    using System.Web.Http;
     using System.Linq;
     using System.Threading;
+    using System.Threading.Tasks;
+    using System.Web.Http;
     using System.Web.Http.Description;
 
+    [Authorize]
     public class TriviaController : ApiController
     {
         private TriviaContext db = new TriviaContext();
