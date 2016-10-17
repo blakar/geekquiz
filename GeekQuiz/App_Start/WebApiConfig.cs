@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web.Http;
-using Newtonsoft.Json.Serialization;
-
-namespace GeekQuiz
+﻿namespace GeekQuiz
 {
+    using Newtonsoft.Json.Serialization;
+    using System.Net.Http.Headers;
+    using System.Web.Http;
+
     public static class WebApiConfig
     {
         public static void Register(HttpConfiguration config)
@@ -15,6 +13,9 @@ namespace GeekQuiz
             // Use camel case for JSON data.
             config.Formatters.JsonFormatter.SerializerSettings.ContractResolver =
                 new CamelCasePropertyNamesContractResolver();
+
+            // Allow to respond to 'text/html' media type (we need this for Chrome)
+            config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/html"));
 
             // Web API routes
             config.MapHttpAttributeRoutes();
